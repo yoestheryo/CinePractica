@@ -24,6 +24,7 @@ public class Login extends Frame implements WindowListener, ActionListener
 	TextField txtClave = new TextField(20);
 	Button btnAceptar = new Button("Aceptar");
 	Button btnCancelar = new Button("Cancelar");
+	
 	//Añadir imagen de fondo a la ventana login
 	Image imagen;
 	Toolkit herramienta;
