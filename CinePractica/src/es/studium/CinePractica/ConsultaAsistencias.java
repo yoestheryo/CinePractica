@@ -14,15 +14,17 @@ import java.awt.event.WindowListener;
 public class ConsultaAsistencias implements WindowListener, ActionListener
 {
 	Frame ventanaConsulta = new Frame("Consulta Asistencias");
-	TextArea texto = new TextArea(11,30);
+	TextArea texto = new TextArea(11,40);
 	Label lblAsistencias = new Label("Información sobre las asistencias de las personas a los cines:");
 	Button btnPdf = new Button("Exportar a PDF");
 	//Button btnExcel = new Button("Exportar a Excel");
 
 	BaseDatos bd = new BaseDatos();
+	int tipoUsuario;
 
-	ConsultaAsistencias()
+	ConsultaAsistencias(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaConsulta.setLayout(new FlowLayout());
 		ventanaConsulta.addWindowListener(this);
 		btnPdf.addActionListener(this);
@@ -30,7 +32,7 @@ public class ConsultaAsistencias implements WindowListener, ActionListener
 
 		ventanaConsulta.add(lblAsistencias);
 		bd.conectar();
-		texto.setText(bd.consultarAsistencias());
+		texto.setText(bd.consultarAsistencias(tipoUsuario));
 		bd.desconectar();
 		ventanaConsulta.add(texto);
 		ventanaConsulta.add(btnPdf);

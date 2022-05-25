@@ -45,11 +45,14 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 	MenuItem itModificacionCine = new MenuItem("Modificar Cine");
 	MenuItem itConsultaCine = new MenuItem("Listado Cines");
 	
+	int tipoUsuario;
+	
 	Image imagen;
 	Toolkit herramienta;
 
 	public MenuPrincipal(int tipo)
 	{
+		tipoUsuario = tipo;
 		setLayout(new FlowLayout());
 		addWindowListener(this);
 		
@@ -152,67 +155,67 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 	{
 		if(evento.getSource().equals(itConsultaPersona))
 		{
-			new ConsultaPersonas();
+			new ConsultaPersonas(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itAltaPersona))
 		{
-			new AltaPersona();
+			new AltaPersona(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itBajaPersona))
 		{
-			new BajaPersona();
+			new BajaPersona(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itModificacionPersona))
 		{
-			new ModificacionPersona();
+			new ModificacionPersona(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itConsultaCliente))
 		{
-			new ConsultaClientes();
+			new ConsultaClientes(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itAltaCliente))
 		{
-			new AltaCliente();
+			new AltaCliente(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itBajaCliente))
 		{
-			new BajaCliente();
+			new BajaCliente(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itModificacionCliente))
 		{
-			new ModificacionCliente();
+			new ModificacionCliente(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itConsultaCine))
 		{
-			new ConsultaCines();
+			new ConsultaCines(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itAltaCine))
 		{
-			new AltaCine();
+			new AltaCine(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itBajaCine))
 		{
-			new BajaCine();
+			new BajaCine(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itModificacionCine))
 		{
-			new ModificacionCine();
+			new ModificacionCine(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itConsultaAsistencia))
 		{
-			new ConsultaAsistencias();
+			new ConsultaAsistencias(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itAltaAsistencia))
 		{
-			new AltaAsistencia();
+			new AltaAsistencia(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itBajaAsistencia))
 		{
-			new BajaAsistencia();
+			new BajaAsistencia(tipoUsuario);
 		}
 		else if(evento.getSource().equals(itModificacionAsistencia))
 		{
-			new ModificacionAsistencia();
+			new ModificacionAsistencia(tipoUsuario);
 		}
 	}
 }

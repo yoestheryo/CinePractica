@@ -31,9 +31,11 @@ public class BajaAsistencia implements WindowListener, ActionListener
 
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	int tipoUsuario;
 
-	public BajaAsistencia()
+	public BajaAsistencia(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaBaja.setLayout(new FlowLayout());
 		ventanaBaja.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -121,7 +123,7 @@ public class BajaAsistencia implements WindowListener, ActionListener
 			try
 			{
 				String[] seleccionado = choAsistencias.getSelectedItem().split("-");
-				int resultado = bd.eliminarAsistencia(Integer.parseInt(seleccionado[0]));
+				int resultado = bd.eliminarAsistencia(tipoUsuario, Integer.parseInt(seleccionado[0]));
 				if(resultado==0)
 				{
 					lblMensaje.setText("La asistencia se ha borrado correctamente.");

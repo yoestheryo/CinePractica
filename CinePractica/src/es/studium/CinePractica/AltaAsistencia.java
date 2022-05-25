@@ -29,12 +29,14 @@ public class AltaAsistencia implements WindowListener, ActionListener
 	ResultSet rs2 = null;
 	int idPersonaFK2;
 	int idCineFK3;
+	int tipoUsuario;
 
 	Dialog dlgConfirmacion = new Dialog(ventanaAlta, "Información importante", true);
 	Label lblConfirmacion = new Label("XXXXXXXXXXXXXXXXXX");
 
-	public AltaAsistencia()
+	public AltaAsistencia(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaAlta.setLayout(new FlowLayout());
 		ventanaAlta.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -125,7 +127,7 @@ public class AltaAsistencia implements WindowListener, ActionListener
 				idPersonaFK2 = Integer.parseInt(seleccionado[0]);
 				String[] seleccionado2 = choCinesFK.getSelectedItem().split("-");
 				idCineFK3 = Integer.parseInt(seleccionado2[0]);
-				int resultado = bd.altaAsistencia(idPersonaFK2, idCineFK3);
+				int resultado = bd.altaAsistencia(tipoUsuario, idPersonaFK2, idCineFK3);
 				if(resultado == 0)
 				{
 					lblConfirmacion.setText("Alta correcta");

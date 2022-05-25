@@ -33,9 +33,11 @@ public class BajaPersona implements WindowListener, ActionListener
 
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	int tipoUsuario;
 
-	public BajaPersona()
+	public BajaPersona(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaBaja.setLayout(new FlowLayout());
 		ventanaBaja.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -124,7 +126,7 @@ public class BajaPersona implements WindowListener, ActionListener
 		{
 			bd.conectar();
 			String[] array = choPersonas.getSelectedItem().split("-");
-			int resultado = bd.eliminarPersona(Integer.parseInt(array[0]));
+			int resultado = bd.eliminarPersona(tipoUsuario, Integer.parseInt(array[0]));
 			if(resultado==0)
 			{
 				lblMensaje.setText("La persona se ha borrado correctamente.");

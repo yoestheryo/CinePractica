@@ -1,10 +1,16 @@
 package es.studium.CinePractica;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseDatos
 {
@@ -17,6 +23,7 @@ public class BaseDatos
 	Connection connection = null;		
 	Statement statement = null;				
 	ResultSet resultado = null;
+	int tipoUsuario;
 
 	public BaseDatos(){}
 
@@ -52,6 +59,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			rs = statement.executeQuery(sentencia);
 			if(rs.next())
 			{
@@ -65,13 +73,14 @@ public class BaseDatos
 	// executeUpdate para todo menos consulta: ALTA, BAJA, MODIFICACIÓN
 	// executeQuery para CONSULTA/SELECT
 
-	public String consultarPersonas()				// Método usado en clase ConsultaPersonas (SELECT)
+	public String consultarPersonas(int tipoUsuario)				// Método usado en clase ConsultaPersonas (SELECT)
 	{
 		String texto = String.format("%-3s %-10s %-7s %-13s %-13s %-13s\n", "Id", "Nombre", "Apellido1", "Apellido2", "Teléfono", "Email");
 		String sentencia = "SELECT * FROM personas;";
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			resultado = statement.executeQuery(sentencia);
 			while(resultado.next()) 
 			{
@@ -89,7 +98,7 @@ public class BaseDatos
 	}
 
 	// Método para INSERT usado en la clase ALTAPERSONA
-	public int altaPersonas(String dni, String nombre, String primerApellido, String segundoApellido, String domicilio, String telefono, String email)
+	public int altaPersonas(int tipoUsuario, String dni, String nombre, String primerApellido, String segundoApellido, String domicilio, String telefono, String email)
 	{
 		int resultado = 0; 	// Se inicializa a 0 y significa que todo bien y no da error. Saltará diálogo con OK
 		String sentencia = "INSERT INTO personas VALUES(null, '" +dni+ "', '" +nombre+ "', '" +primerApellido+ "', '" 
@@ -97,6 +106,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);
 		}
 		catch (SQLException e) 
@@ -119,13 +129,14 @@ public class BaseDatos
 		return(rs);
 	}
 
-	public int eliminarPersona(int idPersona)				// Borrar registro Personas de la clase Baja Persona
+	public int eliminarPersona(int tipoUsuario, int idPersona)				// Borrar registro Personas de la clase Baja Persona
 	{
 		int resultado = 0;
 		sentencia = "DELETE FROM personas WHERE idPersona = "+idPersona;
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);	
 		}
 		catch (SQLException e)
@@ -135,7 +146,7 @@ public class BaseDatos
 		return(resultado);
 	}
 
-	public int modificarPersonas(int idPersona, String dni, String nombre, String apellido1, String apellido2, String dom, String tel, String email)
+	public int modificarPersonas(int tipoUsuario, int idPersona, String dni, String nombre, String apellido1, String apellido2, String dom, String tel, String email)
 	{
 		int resultado = 0;
 		String sentencia = "UPDATE personas SET dniPersona = '"+dni+
@@ -148,6 +159,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);
 		} 
 		catch (SQLException e)
@@ -157,14 +169,15 @@ public class BaseDatos
 		return resultado;
 	}
 
-	public String consultarClientes()		//Método utilizado en ConsultaClientes para mostrar la información. Tiene 1 FK (Personas).
+	public String consultarClientes(int tipoUsuario)		//Método utilizado en ConsultaClientes para mostrar la información. Tiene 1 FK (Personas).
 	{
-		String texto = String.format("%-5s %-12s %-9s %-10s %-10s\n", "Id", "Factura", "Visitas", "Socio", "idPersona");
+		String texto = String.format("%-5s %-12s %-9s %-10s %-10s\n", "Id", "Factura", "Visitas", "Socio", "Datos Personas");
 
-		String sentencia = "SELECT * FROM clientes;";
+		String sentencia = "SELECT * FROM clientes JOIN personas ON idPersona = idPersonaFK1;";
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			resultado = statement.executeQuery(sentencia);
 			while(resultado.next()) 
 			{
@@ -173,19 +186,22 @@ public class BaseDatos
 						resultado.getString("facturaCliente"),
 						resultado.getString("numeroVisitasCliente"), 
 						resultado.getString("serSocio"),
-						resultado.getString("idPersonaFK1")));
+						resultado.getString("nombrePersona")+ " - " +
+						resultado.getString("primerApellidoPersona")+ " - " +
+						resultado.getString("dniPersona")));
 			}
 		}
 		catch (SQLException e) {}
 		return (texto);
 	}
 
-	public int altaCliente(String factura, String visitas, String socio, int idPersonaFK1)	//Método creado para clase altaClientes con el FK
+	public int altaCliente(int tipoUsuario, String factura, String visitas, String socio, int idPersonaFK1)	//Método creado para clase altaClientes con el FK
 	{
 		int resultado = 0;
 		try
 		{	
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, "INSERT INTO clientes VALUES(null, '"+factura+"', '"+visitas+"', '"+socio+"', '"+idPersonaFK1+"');");
 			statement.executeUpdate("INSERT INTO clientes VALUES(null, '"+factura+"', '"+visitas+"', '"+socio+"', '"+idPersonaFK1+"');");	
 		}
 		catch (SQLException e) 
@@ -219,13 +235,14 @@ public class BaseDatos
 		return(rs);
 	}
 
-	public int eliminarCliente(int idCliente)				//Usado en clase BajaCliente para borrar un cliente
+	public int eliminarCliente(int tipoUsuario, int idCliente)				//Usado en clase BajaCliente para borrar un cliente
 	{
 		int resultado = 0;
 		sentencia = "DELETE FROM clientes WHERE idCliente = "+idCliente;
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);	
 		}
 		catch (SQLException e)
@@ -235,7 +252,7 @@ public class BaseDatos
 		return(resultado);
 	}
 
-	public int modificarCliente(int idCliente, String factura, String visitas, String socio, int idPersona)		//Clase Modificación Cliente. Actualizar info
+	public int modificarCliente(int tipoUsuario, int idCliente, String factura, String visitas, String socio, int idPersona)		//Clase Modificación Cliente. Actualizar info
 	{
 		int resultado = 0;
 		String sentencia = "UPDATE clientes SET idCliente = '"+idCliente+
@@ -246,6 +263,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);
 		} 
 		catch (SQLException e)
@@ -255,13 +273,14 @@ public class BaseDatos
 		return resultado;
 	}
 
-	public String consultarCines()
+	public String consultarCines(int tipoUsuario)
 	{
 		String texto = String.format("%-3s %-10s %-7s %-13s %-13s %-13s %-13s\n", "Id", "Nombre", "Ciudad", "Dirección", "Teléfono", "Página Web", "Email");
 		String sentencia = "SELECT * FROM cines;";
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			resultado = statement.executeQuery(sentencia);
 			while(resultado.next()) 
 			{
@@ -279,7 +298,7 @@ public class BaseDatos
 		return(texto);
 	}
 
-	public int altaCines(String nombre, String ciudad, String direccion, String telefono, String web, String email)
+	public int altaCines(int tipoUsuario, String nombre, String ciudad, String direccion, String telefono, String web, String email)
 	{
 		int resultado = 0;
 		String sentencia = "INSERT INTO cines VALUES(null, '" +nombre+ "', '" +ciudad+ "', '" 
@@ -287,6 +306,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);
 		}
 		catch (SQLException e) 
@@ -320,13 +340,14 @@ public class BaseDatos
 		return(rs);
 	}
 	
-	public int eliminarCines(int idCine)	
+	public int eliminarCines(int tipoUsuario, int idCine)	
 	{
 		int resultado = 0;
 		sentencia = "DELETE FROM cines WHERE idCine = "+idCine;
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);	
 		}
 		catch (SQLException e)
@@ -336,7 +357,7 @@ public class BaseDatos
 		return(resultado);
 	}
 	
-	public int modificarCines(int idCine, String nombre, String ciudad, String direccion, String telefono, String web, String email)
+	public int modificarCines(int tipoUsuario, int idCine, String nombre, String ciudad, String direccion, String telefono, String web, String email)
 	{
 		int resultado = 0;
 		String sentencia = "UPDATE cines SET nombreCine = '"+nombre+
@@ -348,6 +369,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);
 		} 
 		catch (SQLException e)
@@ -357,32 +379,37 @@ public class BaseDatos
 		return resultado;
 	}
 	
-	public String consultarAsistencias()		//Método utilizado en ConsultaAsistencias para mostrar la información. Tiene 2 FK (Personas y Cines).
+	public String consultarAsistencias(int tipoUsuario)		//Método utilizado en ConsultaAsistencias para mostrar la información. Tiene 2 FK (Personas y Cines).
 	{
-		String texto = String.format("%-5s %-10s %-15s\n", "Id", "idPersona", "idCine");
+		String texto = String.format("%-5s %-35s %-50s\n", "Id", "Datos Persona", "Datos Cine");
 
-		String sentencia = "SELECT * FROM asistir;";
+		String sentencia = "SELECT * FROM asistir JOIN personas ON idPersona = idPersonaFK2 JOIN cines ON idCine = idCineFK3;";
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			resultado = statement.executeQuery(sentencia);
 			while(resultado.next()) 
 			{
-				texto = texto + (String.format("%-5d %-16s %-18s\n", 
+				texto = texto + (String.format("%-5d %-30s %-80s\n", 
 						resultado.getInt("idAsistir"),						
-						resultado.getString("idPersonaFK2"),
-						resultado.getString("idCineFK3")));
+						resultado.getString("nombrePersona")+" - "+
+						resultado.getString("dniPersona")+" - "+
+						resultado.getString("primerApellidoPersona"),
+						resultado.getString("nombreCine")+" - "+
+						resultado.getString("telefonoCine")));
 			}
 		}
 		catch (SQLException e) {}
 		return (texto);
 	}
-	public int altaAsistencia(int idPersonaFK2, int idCineFK3)	//Método creado para clase altaAsistencias con 2 FKs
+	public int altaAsistencia(int tipoUsuario, int idPersonaFK2, int idCineFK3)	//Método creado para clase altaAsistencias con 2 FKs
 	{
 		int resultado = 0;
 		try
 		{	
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, "INSERT INTO asistir VALUES(null, '"+idPersonaFK2+"', '"+idCineFK3+"');");
 			statement.executeUpdate("INSERT INTO asistir VALUES(null, '"+idPersonaFK2+"', '"+idCineFK3+"');");	
 		}
 		catch (SQLException e) 
@@ -404,13 +431,14 @@ public class BaseDatos
 		return(rs);
 	}
 	
-	public int eliminarAsistencia(int idAsistencia)				//Usado en clase BajaAsistencia
+	public int eliminarAsistencia(int tipoUsuario, int idAsistencia)				//Usado en clase BajaAsistencia
 	{
 		int resultado = 0;
 		sentencia = "DELETE FROM asistir WHERE idAsistir = "+idAsistencia;
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);	
 		}
 		catch (SQLException e)
@@ -420,7 +448,7 @@ public class BaseDatos
 		return(resultado);
 	}
 
-	public int modificarAsistencia(int idAsistencia, int idPersonaFK, int idCineFK)
+	public int modificarAsistencia(int tipoUsuario, int idAsistencia, int idPersonaFK, int idCineFK)
 	{
 		int resultado = 0;
 		String sentencia = "UPDATE asistir SET idPersonaFK2 = '"+idPersonaFK+
@@ -429,6 +457,7 @@ public class BaseDatos
 		try
 		{
 			statement = connection.createStatement();
+			guardarLog(tipoUsuario, sentencia);
 			statement.executeUpdate(sentencia);
 		} 
 		catch (SQLException e)
@@ -436,6 +465,35 @@ public class BaseDatos
 			resultado = -1;
 		}
 		return resultado;
+	}
+	
+	public void guardarLog(int tipoUsuario, String mensaje)
+	{
+		String usuario;
+		if(tipoUsuario==0)
+		{
+			usuario = "Básico";
+		}
+		else
+		{
+			usuario = "Administrador";
+		}
+		Date fecha = new Date();
+		String pattern = "dd/MM/YYYY HH:mm:ss";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		try
+		{
+			FileWriter fw = new FileWriter("historico.log", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter salida = new PrintWriter(bw);
+
+			salida.println("["+simpleDateFormat.format(fecha)+"]["+usuario + "]["+mensaje+"]");
+
+			salida.close();
+			bw.close();
+			fw.close();
+		}
+		catch(IOException ioe){}
 	}
 }	
 

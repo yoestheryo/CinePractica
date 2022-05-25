@@ -19,9 +19,11 @@ public class ConsultaCines implements WindowListener, ActionListener
 	//Button btnExcel = new Button("Exportar a Excel");
 
 	BaseDatos bd = new BaseDatos();
+	int tipoUsuario;
 
-	public ConsultaCines()
+	public ConsultaCines(int tipoUsuario)
 	{
+		this.tipoUsuario=tipoUsuario;
 		ventanaConsulta.setLayout(new FlowLayout());
 		ventanaConsulta.addWindowListener(this);
 		btnPdf.addActionListener(this);
@@ -30,7 +32,7 @@ public class ConsultaCines implements WindowListener, ActionListener
 		ventanaConsulta.add(lblPersonas);
 		bd.conectar();
 		texto.setEnabled(false);
-		texto.setText(bd.consultarCines()); 	//Método consultar creado en BaseDatos: SELECT * FROM
+		texto.setText(bd.consultarCines(tipoUsuario)); 	//Método consultar creado en BaseDatos: SELECT * FROM
 		bd.desconectar();
 		ventanaConsulta.add(texto);
 		ventanaConsulta.add(btnPdf);

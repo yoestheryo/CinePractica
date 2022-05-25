@@ -32,12 +32,14 @@ public class AltaCine implements WindowListener, ActionListener
 	Button btnCancelar = new Button("Cancelar");
 
 	BaseDatos bd = new BaseDatos();
-
+	int tipoUsuario;
+	
 	Dialog dlgConfirmacion = new Dialog(ventanaAlta, "Información importante", true);
 	Label lblConfirmacion = new Label("XXXXXXXXXXXXXXXXXX");
 
-	public AltaCine()
+	public AltaCine(int tipoUsuario)
 	{
+		this.tipoUsuario=tipoUsuario;
 		ventanaAlta.setLayout(new FlowLayout());
 		ventanaAlta.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -109,7 +111,7 @@ public class AltaCine implements WindowListener, ActionListener
 			else
 			{
 				bd.conectar();
-				int resultado = bd.altaCines(txtNombre.getText(), txtCiudad.getText(), txtDireccion.getText(), 
+				int resultado = bd.altaCines(tipoUsuario, txtNombre.getText(), txtCiudad.getText(), txtDireccion.getText(), 
 						txtTelefono.getText(), txtWeb.getText(), txtEmail.getText());
 				if(resultado == 0)
 				{

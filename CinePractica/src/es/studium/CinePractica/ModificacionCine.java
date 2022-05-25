@@ -45,9 +45,12 @@ public class ModificacionCine implements WindowListener, ActionListener
 	int idCine;						//Nos interesa guardar el id del Cine que se está modificando
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	
+	int tipoUsuario;
 
-	public ModificacionCine()
+	public ModificacionCine(int tipoUsuario)
 	{
+		this.tipoUsuario=tipoUsuario;
 		ventana.setLayout(new FlowLayout());
 		ventana.addWindowListener(this);
 		ventanaEdicion.addWindowListener(this);
@@ -160,7 +163,7 @@ public class ModificacionCine implements WindowListener, ActionListener
 		else if(evento.getSource().equals(btnGuardar))
 		{
 			bd.conectar();
-			int resultado = bd.modificarCines(Integer.parseInt(txtId.getText()), txtNombre.getText(), txtCiudad.getText(), txtDireccion.getText(),
+			int resultado = bd.modificarCines(tipoUsuario, Integer.parseInt(txtId.getText()), txtNombre.getText(), txtCiudad.getText(), txtDireccion.getText(),
 					txtTelefono.getText(), txtWeb.getText(), txtEmail.getText());	
 			
 			if(resultado == 0)

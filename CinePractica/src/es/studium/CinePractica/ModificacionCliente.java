@@ -42,9 +42,12 @@ public class ModificacionCliente implements WindowListener, ActionListener
 	int idPersona;
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	
+	int tipoUsuario;
 
-	public ModificacionCliente()
+	public ModificacionCliente(int tipoUsuario)
 	{
+		this.tipoUsuario=tipoUsuario;
 		ventana.setLayout(new FlowLayout());
 		ventana.addWindowListener(this);
 		ventanaEdicion.addWindowListener(this);
@@ -184,7 +187,7 @@ public class ModificacionCliente implements WindowListener, ActionListener
 		else if(evento.getSource().equals(btnGuardar))
 		{
 			bd.conectar();
-			int resultado = bd.modificarCliente(Integer.parseInt(txtId.getText()), txtFactura.getText(), txtVisitas.getText(),
+			int resultado = bd.modificarCliente(tipoUsuario, Integer.parseInt(txtId.getText()), txtFactura.getText(), txtVisitas.getText(),
 					txtSocio.getText(), idPersona);	
 			
 			if(resultado == 0)

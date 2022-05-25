@@ -33,9 +33,11 @@ public class BajaCliente implements WindowListener, ActionListener
 
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	int tipoUsuario;
 
-	public BajaCliente()
+	public BajaCliente(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaBaja.setLayout(new FlowLayout());
 		ventanaBaja.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -123,7 +125,7 @@ public class BajaCliente implements WindowListener, ActionListener
 			try
 			{
 				String[] array = choClientes.getSelectedItem().split("-");
-				int resultado = bd.eliminarCliente(Integer.parseInt(array[0]));
+				int resultado = bd.eliminarCliente(tipoUsuario, Integer.parseInt(array[0]));
 				if(resultado==0)
 				{
 					lblMensaje.setText("El cliente se ha borrado correctamente.");

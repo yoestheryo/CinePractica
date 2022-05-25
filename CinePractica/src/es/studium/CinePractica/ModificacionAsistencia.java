@@ -34,6 +34,8 @@ public class ModificacionAsistencia implements WindowListener, ActionListener
 
 	Dialog dlgMensaje = new Dialog(ventana, "Información Importante", true);
 	Label lblMensaje = new Label("XXXXXXXXXXXXXXXXX");
+	
+	int tipoUsuario;
 
 	int idAsistencia;
 	int idPersonaFK;
@@ -42,8 +44,9 @@ public class ModificacionAsistencia implements WindowListener, ActionListener
 	ResultSet rs = null;
 	ResultSet rs2 = null;
 
-	public ModificacionAsistencia()
+	public ModificacionAsistencia(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventana.setLayout(new FlowLayout());
 		ventana.addWindowListener(this);
 		ventanaEdicion.addWindowListener(this);
@@ -197,7 +200,7 @@ public class ModificacionAsistencia implements WindowListener, ActionListener
 			idPersonaFK = Integer.parseInt(seleccionado2[0]);
 			String[] seleccionado3 = choCinesFK.getSelectedItem().split("-");
 			idCineFK = Integer.parseInt(seleccionado3[0]);
-			int resultado = bd.modificarAsistencia(Integer.parseInt(txtId.getText()), idPersonaFK, idCineFK);	
+			int resultado = bd.modificarAsistencia(tipoUsuario, Integer.parseInt(txtId.getText()), idPersonaFK, idCineFK);	
 
 			if(resultado == 0)
 			{

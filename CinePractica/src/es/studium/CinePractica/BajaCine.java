@@ -31,9 +31,11 @@ public class BajaCine implements WindowListener, ActionListener
 
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	int tipoUsuario;
 
-	public BajaCine()
+	public BajaCine(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaBaja.setLayout(new FlowLayout());
 		ventanaBaja.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -119,7 +121,7 @@ public class BajaCine implements WindowListener, ActionListener
 		{
 			bd.conectar();
 			String[] array = choCines.getSelectedItem().split("-");
-			int resultado = bd.eliminarCines(Integer.parseInt(array[0]));
+			int resultado = bd.eliminarCines(tipoUsuario, Integer.parseInt(array[0]));
 			if(resultado==0)
 			{
 				lblMensaje.setText("Cine borrado correctamente.");

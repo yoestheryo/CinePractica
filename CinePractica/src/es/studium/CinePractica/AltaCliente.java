@@ -34,13 +34,15 @@ public class AltaCliente implements WindowListener, ActionListener
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
 	int idPersonaFK1;
+	int tipoUsuario;
 
 	//Dialogo cuando los registros introducidos por el usuario, no sean correctos:
 	Dialog dlgConfirmacion = new Dialog(ventanaAlta, "Información importante", true);
 	Label lblConfirmacion = new Label("XXXXXXXXXXXXXXXXXX");
 
-	public AltaCliente()
+	public AltaCliente(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaAlta.setLayout(new FlowLayout());
 		ventanaAlta.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -121,7 +123,8 @@ public class AltaCliente implements WindowListener, ActionListener
 				bd.conectar();
 				String[] seleccionado = choPersonasFK.getSelectedItem().split("-");
 				idPersonaFK1 = Integer.parseInt(seleccionado[0]);
-				int resultado = bd.altaCliente(txtFactura.getText(), txtVisitas.getText(), txtSocio.getText(), idPersonaFK1);
+				
+				int resultado = bd.altaCliente(tipoUsuario, txtFactura.getText(), txtVisitas.getText(), txtSocio.getText(), idPersonaFK1);
 				if(resultado == 0)
 				{
 					lblConfirmacion.setText("Alta correcta");

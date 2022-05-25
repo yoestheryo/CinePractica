@@ -47,9 +47,12 @@ public class ModificacionPersona implements WindowListener, ActionListener
 	int idPersona;						//Nos interesa guardar el id de la Personas que se está modificando
 	BaseDatos bd = new BaseDatos();
 	ResultSet rs = null;
+	
+	int tipoUsuario;
 
-	public ModificacionPersona()
+	public ModificacionPersona(int tipoUsuario)
 	{
+		this.tipoUsuario=tipoUsuario;
 		ventana.setLayout(new FlowLayout());
 		ventana.addWindowListener(this);
 		ventanaEdicion.addWindowListener(this);
@@ -165,7 +168,7 @@ public class ModificacionPersona implements WindowListener, ActionListener
 		else if(evento.getSource().equals(btnGuardar))
 		{
 			bd.conectar();
-			int resultado = bd.modificarPersonas(Integer.parseInt(txtId.getText()), txtDni.getText(), txtNombre.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), 
+			int resultado = bd.modificarPersonas(tipoUsuario, Integer.parseInt(txtId.getText()), txtDni.getText(), txtNombre.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), 
 					txtDomicilio.getText(), txtTelefono.getText(), txtEmail.getText());	
 			
 			if(resultado == 0)

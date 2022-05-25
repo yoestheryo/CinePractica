@@ -29,7 +29,8 @@ public class Login extends Frame implements WindowListener, ActionListener
 	Image imagen;
 	Toolkit herramienta;
 
-	BaseDatos bd = new BaseDatos();					//	Se crea OBJETO de la clase BaseDatos (para todas las conexiones)
+	BaseDatos bd = new BaseDatos();		//	Se crea OBJETO de la clase BaseDatos (para todas las conexiones)
+	int resultado;
 
 	//Dialogo de conexión incorrecta cuando usuario y contraseña erroneos.
 	Dialog dlgMensaje = new Dialog(this, "Mensaje", true);
@@ -37,6 +38,7 @@ public class Login extends Frame implements WindowListener, ActionListener
 
 	public Login()
 	{
+
 		setLayout(new FlowLayout());
 		addWindowListener(this);
 		dlgMensaje.addWindowListener(this);
@@ -84,7 +86,8 @@ public class Login extends Frame implements WindowListener, ActionListener
 			dlgMensaje.setVisible(false);	//Para que se cierre el diálogo
 		}
 		else 
-		{
+		{	
+			bd.guardarLog(resultado, "Logout");
 			System.exit(0);
 		}
 	}
@@ -115,10 +118,10 @@ public class Login extends Frame implements WindowListener, ActionListener
 			String usuario = txtUsuario.getText();				
 			String clave = txtClave.getText();
 			//Hacer un SELECT
-			int resultado = bd.consultar("SELECT * FROM usuarios WHERE " +
+			resultado = bd.consultar("SELECT * FROM usuarios WHERE " +
 					"nombreUsuario = '" + usuario + "' AND claveUsuario = SHA2('" + clave + "', 256);");	//SHA, función para encriptar contraseña
 
-			//Si credenciales correctas, mostrar Menú Principal
+			//Si Credenciales incorrectas, diálogo error.
 			if(resultado==-1)
 			{
 				dlgMensaje.setLayout(new FlowLayout());
@@ -131,9 +134,10 @@ public class Login extends Frame implements WindowListener, ActionListener
 				dlgMensaje.setVisible(true);
 
 			}
-			//Si Credenciales incorrectas, diálogo error.
+			//Si credenciales correctas, mostrar Menú Principal
 			else
 			{
+				bd.guardarLog(resultado, "Login");
 				new MenuPrincipal(resultado);
 				setVisible(false);
 			}

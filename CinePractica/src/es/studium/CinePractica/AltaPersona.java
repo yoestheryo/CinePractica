@@ -35,13 +35,15 @@ public class AltaPersona implements WindowListener, ActionListener
 	Button btnCancelar = new Button("Cancelar");
 
 	BaseDatos bd = new BaseDatos();
+	int tipoUsuario;
 
 	//Diálogo para cuando los registros introducidos por el usuario, no sean correctos o no:
 	Dialog dlgConfirmacion = new Dialog(ventanaAlta, "Información importante", true);
 	Label lblConfirmacion = new Label("XXXXXXXXXXXXXXXXXX");
 
-	public AltaPersona()
+	public AltaPersona(int tipoUsuario)
 	{
+		this.tipoUsuario = tipoUsuario;
 		ventanaAlta.setLayout(new FlowLayout());
 		ventanaAlta.addWindowListener(this);
 		dlgConfirmacion.addWindowListener(this);
@@ -115,7 +117,7 @@ public class AltaPersona implements WindowListener, ActionListener
 			else
 			{
 				bd.conectar();
-				int resultado = bd.altaPersonas(txtDni.getText(), txtNombre.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), 
+				int resultado = bd.altaPersonas(tipoUsuario, txtDni.getText(), txtNombre.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), 
 						txtDomicilio.getText(), txtTelefono.getText(), txtEmail.getText());
 				if(resultado == 0)
 				{
