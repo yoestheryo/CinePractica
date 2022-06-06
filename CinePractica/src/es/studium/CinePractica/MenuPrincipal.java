@@ -235,7 +235,6 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 			} 
 			catch (java.io.IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
