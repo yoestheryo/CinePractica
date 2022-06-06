@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Manual Usuario</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/Users/esthe/Desktop/Practicas pendientes/Práctica3 PR - Programa gestión/Ayuda/img/favicon.png">
+		<img class="portada" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\portada.jpg" 
+		width=1100 height=350>
+
+		<style>
+			body {margin-left: 50px; background-color: rgb(192, 205, 252);}
+			img.portada
+			{
+				float: center;
+				margin-top: 10px;
+				margin-bottom: 30px;
+        		margin-left: 20px;
+			}
+
+			img.general
+			{
+				float: center;
+				margin-top: 30px;
+				margin-bottom: 30px;
+        		margin-left: 100px;
+				margin-right: 50px;
+			}
+
+			h1{
+        		color:rgb(92, 107, 157);
+        		text-shadow: rgb(162, 175, 248) 0.2em 0.2em 0.2em;
+        		font-style: italic;
+        		font-size: 50px;
+        		text-align:center;
+        		letter-spacing:normal;
+        		text-transform:capitalize;
+        		font-weight: bold;
+        		font-family:Verdana, Geneva, Tahoma, sans-serif;
+        		margin-bottom: 5%;
+			  }
+
+			h2{
+        		color:rgb(245, 23, 123);
+				font-weight: bolder;
+        		font-size: 25px;
+        		font-family:Verdana, Geneva, Tahoma, sans-serif;
+        		text-justify: distribute;
+				margin-left: 40;
+    		  }
+
+			div{
+				font-family:'Times New Roman', Times, serif;
+				color:black;
+        		text-align: justify;
+        		font-size: 18px;
+        		width: 80%;
+				margin-bottom: 20;
+    		  }
+
+			footer{
+				font-size: 17px;
+				text-align: center;
+				color:blue;
+				width: 80%;
+				height: 15%;
+				margin-top: 50px;
+				margin-bottom: 20px;
+				border-top: 3px solid rgb(2, 147, 210);
+			  }
+		</style>
+	</head>
+
+	<body>
+		<header>
+		   <h1>Menú Cines</h1>
+		</header>
+
+		<article>
+            <h2>Nuevo Cine</h2>
+		<div>
+            Si lo que queremos es crear un alta, hacer un nuevo registro, o crear un nuevo cine, debemos elegir la opción ‘Nuevo Cine’, en la pestaña ‘Cines’.
+            La siguiente ventana que aparece es esta:
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\altaCine.png"/>
+        </p>
+            <li>1.	Nombre del Cine.</li>
+            <li>2.	Población o Ciudad en la que se encuentra.</li>
+            <li>3.	Dirección.</li>
+            <li>4.	Teléfono (Debe constar de no más de 9 dígitos o dará error).</li>
+            <li>5.	Página Web (dirección de la página Web).</li>
+            <li>6.	Email.</li>    
+        </p>
+        Si se escribe en los campos de texto y se pulsa el botón ‘Cancelar’, se borrará todo lo que hay escrito en ellos, es decir, se limpiarán los campos para volver 
+        a empezar de nuevo. Si se pulsa ‘Aceptar’, puede saltar un mensaje informándonos de un posible error, al no haber rellenado los campos, por ejemplo.
+        Si se han rellenado todos los campos y se pulsa aceptar, pueden saltar dos mensajes. O el Alta se ha realizado con éxito, o bien se ha producido un error, 
+        tal que el teléfono tenga más de 9 dígitos. Si ese no fuese el problema, por favor, contacte con el servicio informático de su empresa.
+		</div>
+
+		<h2>Eliminar Cine</h2>
+		<div>
+        Cuando se quiere borrar un Cine que ya está registrado, se debe ir a la pestaña Cines y elegir la opción ‘Eliminar Cine’. Tal y como se muestra en la siguiente imagen:
+        En la ventana ‘Baja Cine’, como se observa, hay que elegir un cine de los que aparecerán en el desplegable que indica ‘Elija el Cine que desea borrar…’. 
+        Si no elegimos ninguna opción y pulsamos el botón de ‘Borrar’, se nos avisa de que hay que elegir una de ellas con una pequeña ventana.
+        </p>
+        Estos Cines han sido dados de alta previamente en nuestro programa.
+        Tendremos que cerrar esta ventana y elegir una opción, cuando pulsemos ‘Borrar’, se nos abrirá otra ventana preguntándonos si estamos seguro de elegir borrar 
+        ese cine que hemos seleccionado, ya que una vez que la hayamos eliminado no podremos recuperarlo.
+        Si pulsamos ‘No’, nos devolverá a la pantalla anterior. Si pulsamos ‘Sí’, nos saltará otro mensaje, bien confirmando la Baja de ese Cine, o bien diciendo que se ha producido un error.
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\eliminarCine.png"/> 
+        </p>  
+        Este error, básicamente nos explica que este Cine elegido, tiene a personas o clientes registrados en él. Es decir, hay datos de Clientes que tienen relación con 
+        esos cines a través de sus visitas. Hay dos posibles soluciones si realmente necesitamos eliminar este cine de nuestro registro. O bien vamos a la pestaña de 
+        Clientes y elegimos eliminar todos los Clientes que tengan el número identificativo de este cine, y después borrar este cine donde ya no hay registrado ningún 
+        cliente, o bien, se puede comunicar al servicio técnico de este conflicto para que nos lo solucionen.
+        Si este cine, no tiene aún ningún cliente registrado, nos debería de saltar una ventana de confirmación de la baja.
+        </div>	
+			
+		<h2>Modificar Cine</h2>
+		<div>
+			Modificar los datos del Cine, significa editar la información que ya estaba registrada de ese cine. Para ello, debemos elegir la opción ‘Modificar Cine’ 
+            dentro de la pestaña ‘Cines’ del Menú Principal. Cuando elegimos esa opción, aparecerá una primera ventana donde se volverá a escoger el cine que queremos modificar:
+		</p>
+		<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\elegirCineModificar.png"/>
+		</p>	
+		Si no se elige ninguna opción, como vemos en la imagen anterior y directamente pulsamos en ‘Modificar’ y nos saltará un mensaje avisándonos de que debemos elegir 
+        una opción. Sin más, cerramos la ventanita y elegiremos el cine que deseamos modificar.
+		</p>
+        Cuando lo hayamos seleccionado, nos saldrá esta otra ventana:
+        Todos los campos vienen rellenos por defecto, con la información que se introdujo de este cine, para que sea más cómodo para el usuario a la hora de modificar.
+        De este modo, simplemente habría que cambiar los datos, borrando únicamente el campo o los campos que necesitan ser modificados. El resto permanecería igual.
+        Puede llamar la atención que el primer campo, el ‘idCine’, no se puede modificar aunque esté visible. Esto no depende del usuario, ya que ese número indica el 
+        número que identifica a ese cine o ese registro (en relación con la base de datos donde se guarda la información) y el usuario no tiene que hacer nada con esto.
+        </p>
+			<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\modificarCine.png"/>
+		</p>
+		Si al ver los campos rellenos con la información del cine, vemos que por error hemos elegido un cine que no queríamos modificar, pulsando ‘Cancelar’, se cerrará 
+        la ventana y nos llevará a la anterior donde podemos elegir nuevamente la opción correcta.
+        Cuando hayamos acabado con las modificaciones, debemos ‘Guardar Cambios’, si todo ha ido bien, nos debe aparecer una ventana que lo confirme y si no es así nos 
+        saltará un error, el cuál puede ser por haber superado el número de dígitos en el número de teléfono. Si ese no fuese ese el problema, contacte con el servicio 
+        informático de su empresa.
+		</div>
+
+		<h2>Listado Cines</h2>
+		<div>
+			La última opción en esta pestaña es el Listado de Cines. Esto no es más que una consulta de todos los datos de los cines registrados en nuestro sistema. 
+            Esta información se verá en un cuadro de texto donde no se podrá modificar nada, simplemente muestra la información.
+            También está la opción de exportar esos datos a un PDF, pulsando el botón. Pero esto se explicará más adelante.
+		</p>
+		<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\consultaCines.png"/>
+        </div>
+		</article>
+
+		<footer>
+			<p>Si tiene alguna otra duda, siga consultando el resto de la guía.</p>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Manual Usuario</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/Users/esthe/Desktop/Practicas pendientes/Práctica3 PR - Programa gestión/Ayuda/img/favicon.png">
+		<img class="portada" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\portada.jpg" 
+		width=1100 height=350>
+
+		<style>
+			body {margin-left: 50px; background-color: rgb(192, 205, 252);}
+			img.portada
+			{
+				float: center;
+				margin-top: 10px;
+				margin-bottom: 30px;
+        		margin-left: 20px;
+			}
+
+			img.general
+			{
+				float: center;
+				margin-top: 30px;
+				margin-bottom: 30px;
+        		margin-left: 100px;
+				margin-right: 50px;
+			}
+
+			h1{
+        		color:rgb(92, 107, 157);
+        		text-shadow: rgb(162, 175, 248) 0.2em 0.2em 0.2em;
+        		font-style: italic;
+        		font-size: 50px;
+        		text-align:center;
+        		letter-spacing:normal;
+        		text-transform:capitalize;
+        		font-weight: bold;
+        		font-family:Verdana, Geneva, Tahoma, sans-serif;
+        		margin-bottom: 5%;
+			  }
+
+			h2{
+        		color:rgb(245, 23, 123);
+				font-weight: bolder;
+        		font-size: 25px;
+        		font-family:Verdana, Geneva, Tahoma, sans-serif;
+        		text-justify: distribute;
+				margin-left: 40;
+    		  }
+
+			div{
+				font-family:'Times New Roman', Times, serif;
+				color:black;
+        		text-align: justify;
+        		font-size: 18px;
+        		width: 80%;
+				margin-bottom: 20;
+    		  }
+
+			footer{
+				font-size: 17px;
+				text-align: center;
+				color:blue;
+				width: 80%;
+				height: 15%;
+				margin-top: 50px;
+				margin-bottom: 20px;
+				border-top: 3px solid rgb(2, 147, 210);
+			  }
+		</style>
+	</head>
+
+	<body>
+		<header>
+		   <h1>Menú Personas</h1>
+		   
+		</header>
+
+		<article>
+            <h2>Nueva Persona</h2>
+		<div>
+            Empezaremos por la pestaña más fácil, Personas, y se hará desde el punto de vista del usuario administrador, 
+            donde explicaremos cada una de las opciones disponibles.
+            Si lo que queremos es crear un alta, hacer un nuevo registro o crear una nueva persona, 
+            debemos elegir la opción ‘Nueva Persona’, en la pestaña ‘Persona’.
+            Seguidamente se nos abre esta ventana:
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\altaPersona.png"/>
+        </p>
+            Cuando se pulse el botón ‘Cancelar’ se limpiarán todos los campos.
+            Si los datos introducidos son correctos y se guardan correctamente cuando pulsemos ‘Aceptar’, saldrá una ventana confirmando 
+            que el alta se ha realizado correctamente. Si se hubiese producido algún error, como por ejemplo introducir letras en el 
+            número de teléfono, o se superan los 9 números, saldrá una pequeña ventana que nos indicará que ha habido un error:
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\alta.png"/>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\error.png"/>
+
+		</div>
+
+		<h2>Eliminar Persona</h2>
+		<div>
+			Cuando se quiere borrar a una Persona que ya está registrada, se debe ir a la pestaña Personas y elegir la opción ‘Eliminar Persona’. 
+            A continuación, se muestra la ventana que se usará para dar de Baja a una Persona: En la ventana ‘Baja Persona’, como se observa, 
+            hay que elegir una persona de las que aparecerán en el desplegable que indica ‘Elija la persona…’.
+            Si no elegimos ninguna y pulsamos el botón de ‘Borrar’, se nos avisa de que hay que elegir una opción con una pequeña ventana:
+        
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\eliminarPersona.png"/> 
+        </p>  
+            Estas personas han sido dadas de alta previamente en nuestro programa.
+            Tendremos que cerrar esta ventana y elegir una opción, cuando pulsemos ‘Borrar’, se nos abrirá otra ventana preguntándonos 
+            si estamos seguro de elegir esa persona que hemos seleccionado, ya que una vez que la hayamos eliminado no podremos 
+            recuperarla.
+            Si pulsamos ‘No’, nos devolverá a la pantalla anterior.
+            Si pulsamos ‘Sí’, nos saltará otro mensaje, bien confirmando la Baja de esa persona, o bien diciendo que se ha producido un error.
+            Este error, básicamente nos explica que esta Persona elegida está también registrada como Cliente y que hay un conflicto al eliminar esta Persona.
+            Hay dos posibles soluciones si realmente necesitamos eliminar esta persona de nuestro registro. O bien vamos a la pestaña de Clientes y 
+            elegimos eliminar todos los Clientes que tengan el número identificativo de esta persona (el número 7, en este caso) y después borrar esta persona, 
+            o se puede comunicar al servicio técnico de este conflicto para que nos lo solucionen.
+            Si esa persona, no está registrada en ninguna de las otras pestañas, nos debería de saltar una ventana de confirmación de la baja, como la que aparece a continuación:
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\personaEliminada.png"/>
+        </p>
+        </div>	
+			
+		<h2>Modificar Persona</h2>
+		<div>
+			Modificar una Persona, significa editar la información que ya estaba registrada de una persona. Para ello, aparecerá una primera ventana donde se volverá a 
+			escoger la Persona que queremos modificar.
+			Si no se elige ninguna opción, como vemos en la imagen anterior y directamente pulsamos en ‘Modificar’ y nos saltará un mensaje avisándonos de que debemos 
+			elegir una opción.
+			Sin más, cerramos la ventanita y elegiremos la persona que deseamos modificar.
+		</p>
+		<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\elegirPersonaModificar.png"/>
+		</p>	
+			Cuando lo hayamos hecho, nos saldrá esta otra ventana.
+			Todos los campos vienen rellenos por defecto, con la información que se introdujo de esta persona para que sea más cómodo para el usuario a la hora de 
+			modificar. De este modo, simplemente habría que cambiar los datos, borrando únicamente el campo o los campos que necesitan ser modificados. 
+			El resto permanecería igual. Puede llamar la atención que el primer campo, el ‘idPersona’, no se puede modificar aunque esté visible. 
+			Esto no depende del usuario, ya que ese número indica el número que identifica a esa persona o ese registro (en relación con la base de datos donde 
+			se guarda la información) y el usuario no tiene que hacer nada con esto.
+		</p>
+			<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\modificarPersona.png"/>
+		</p>
+		Si al ver los campos rellenos con la información de la persona, vemos que por error hemos elegido la persona que no queríamos modificar, pulsando ‘Cancelar’,
+		 se cerrará la ventana y nos llevará a la anterior donde podemos elegir nuevamente la persona correcta. Cuando hayamos acabado con las modificaciones, 
+		 debemos ‘Guardar Cambios’, si todo ha ido bien, nos debe aparecer una ventana que lo confirme y si no es así nos saltará un error, el cuál puede ser por 
+		 haber superado el número de dígitos o bien en el DNI o en el número de teléfono. Si ese no fuese ese el problema, contacte con el servicio informático de su empresa.
+		</div>
+
+		<h2>Listado Personas</h2>
+		<div>
+			La última opción en esta pestaña es el Listado de Personas. Esto no es más que una consulta de todos los datos de las personas registradas en nuestro sistema. 
+			Esta información se verá en un cuadro de texto donde no se podrá modificar nada, simplemente muestra la información.
+			También está la opción de exportar esos datos a un PDF, pulsando el botón. Pero esto se explicará más adelante.
+		</p>
+		<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\consultaPersona.png"/>
+        </div>
+		</article>
+
+		<footer>
+			<p>Si tiene alguna otra duda, siga consultando el resto de la guía.</p>
+		</footer>
+	</body>
+</html>

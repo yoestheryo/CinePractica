@@ -172,7 +172,6 @@ public class BaseDatos
 	public String consultarClientes(int tipoUsuario)		//Método utilizado en ConsultaClientes para mostrar la información. Tiene 1 FK (Personas).
 	{
 		String texto = String.format("%-5s %-12s %-9s %-10s %-10s\n", "Id", "Factura", "Visitas", "Socio", "Datos Personas");
-
 		String sentencia = "SELECT * FROM clientes JOIN personas ON idPersona = idPersonaFK1;";
 		try
 		{

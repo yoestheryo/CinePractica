@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import com.itextpdf.io.exceptions.IOException;
+
 public class MenuPrincipal extends Frame implements WindowListener, ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -44,9 +46,12 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 	MenuItem itBajaCine = new MenuItem("Eliminar Cine");	
 	MenuItem itModificacionCine = new MenuItem("Modificar Cine");
 	MenuItem itConsultaCine = new MenuItem("Listado Cines");
-	
+
+	Menu mnuAyuda = new Menu("Ayuda");
+	MenuItem itAyuda = new MenuItem("Ayuda");
+
 	int tipoUsuario;
-	
+
 	Image imagen;
 	Toolkit herramienta;
 
@@ -55,34 +60,37 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 		tipoUsuario = tipo;
 		setLayout(new FlowLayout());
 		addWindowListener(this);
-		
+
 		mnuAsistencias.addActionListener(this);
 		itAltaAsistencia.addActionListener(this);
 		itBajaAsistencia.addActionListener(this);
 		itModificacionAsistencia.addActionListener(this);
 		itConsultaAsistencia.addActionListener(this);
-		
+
 		mnuPersonas.addActionListener(this);
 		itAltaPersona.addActionListener(this);
 		itBajaPersona.addActionListener(this);
 		itModificacionPersona.addActionListener(this);
 		itConsultaPersona.addActionListener(this);
-		
+
 		mnuClientes.addActionListener(this);
 		itAltaCliente.addActionListener(this);
 		itBajaCliente.addActionListener(this);
 		itModificacionCliente.addActionListener(this);
 		itConsultaCliente.addActionListener(this);
-		
+
 		mnuCines.addActionListener(this);
 		itAltaCine.addActionListener(this);
 		itBajaCine.addActionListener(this);
 		itModificacionCine.addActionListener(this);
 		itConsultaCine.addActionListener(this);
-		
+
+		mnuAyuda.addActionListener(this);
+		itAyuda.addActionListener(this);
+
 		herramienta = getToolkit();
 		imagen = herramienta.getImage("img\\cine.jpg");
-		
+
 		barraMenu.add(mnuAsistencias);
 		mnuAsistencias.add(itAltaAsistencia);
 		if(tipo==1)								//Si el tipo de Usuario es 1, añadir estás dos opciones más
@@ -118,16 +126,18 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 			mnuCines.add(itModificacionCine);
 		}
 		mnuCines.add(itConsultaCine);
+		barraMenu.add(mnuAyuda);
+		mnuAyuda.add(itAyuda);
 
 		setMenuBar(barraMenu);	// Al menú le añadimos la barra de menú 
 
-		setTitle("Menú Principal:");
+		setTitle("Menú Principal");
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setSize(300,180);
+		setSize(310,180);
 		setVisible(true);		
 	}
-	
+
 	public void paint(Graphics g)
 	{
 		g.drawImage(imagen,4,23,this); 
@@ -216,6 +226,18 @@ public class MenuPrincipal extends Frame implements WindowListener, ActionListen
 		else if(evento.getSource().equals(itModificacionAsistencia))
 		{
 			new ModificacionAsistencia(tipoUsuario);
+		}
+		else if(evento.getSource().equals(itAyuda))
+		{
+			try
+			{
+				Runtime.getRuntime().exec("hh.exe Segundo.chm");
+			} 
+			catch (java.io.IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

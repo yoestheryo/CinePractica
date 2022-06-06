@@ -1,6 +1,8 @@
 package es.studium.CinePractica;
+
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
@@ -9,16 +11,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 public class ConsultaCines implements WindowListener, ActionListener
 {
 	Frame ventanaConsulta = new Frame("Consulta Cines");
-	TextArea texto = new TextArea(15,90);
+	TextArea texto = new TextArea(10,83);
 	Label lblPersonas = new Label("Listado de Cines de la cadena");
 	Button btnPdf = new Button("Exportar a PDF");
-	//Button btnExcel = new Button("Exportar a Excel");
 
 	BaseDatos bd = new BaseDatos();
+	public static final String DEST="ConsultaCines.pdf";
+	PdfFont font;
+	PdfWriter writer;
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultSet = null;
+	
 	int tipoUsuario;
 
 	public ConsultaCines(int tipoUsuario)
@@ -41,7 +61,7 @@ public class ConsultaCines implements WindowListener, ActionListener
 		ventanaConsulta.setLocationRelativeTo(null);
 		ventanaConsulta.setBackground(Color.cyan);
 		ventanaConsulta.setResizable(false);
-		ventanaConsulta.setSize(940,310);
+		ventanaConsulta.setSize(995,280);
 		ventanaConsulta.setVisible(true);
 	}
 
@@ -63,8 +83,49 @@ public class ConsultaCines implements WindowListener, ActionListener
 	@Override
 	public void windowDeactivated(WindowEvent e){}
 	@Override
-	public void actionPerformed(ActionEvent event)
+	public void actionPerformed(ActionEvent evento)
 	{
-		//Botón PDF y Excel
+		if(evento.getSource().equals(btnPdf))
+		{	
+			//Initialize PDF writer
+			try
+			{
+				writer = new PdfWriter(DEST);
+			} catch (FileNotFoundException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			//Initialize PDF document
+			PdfDocument pdf = new PdfDocument(writer);
+			// Initialize document
+			Document document = new Document(pdf);
+			//Add paragraph to the document
+			document.add(new Paragraph("Cines:"));
+			// Create a PdfFont
+			try
+			{
+				font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+			} catch (java.io.IOException e)
+			{
+
+				e.printStackTrace();
+			}
+
+			bd.conectar();
+			document.add(new Paragraph(bd.consultarCines(tipoUsuario)));
+			bd.desconectar();
+
+			document.close();
+			// Open the new PDF document just created
+			try
+			{
+				Desktop.getDesktop().open(new File(DEST));
+			} catch (java.io.IOException e)
+			{
+
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -19,9 +19,9 @@ public class Login extends Frame implements WindowListener, ActionListener
 	private static final long serialVersionUID = 1L;
 	//Componentes LOGIN
 	Label lblUsuario = new Label("Usuario:");
-	TextField txtUsuario = new TextField(20);
+	TextField txtUsuario = new TextField("administrador");
 	Label lblClave = new Label("Clave:");
-	TextField txtClave = new TextField(20);
+	TextField txtClave = new TextField("administrador");
 	Button btnAceptar = new Button("Aceptar");
 	Button btnCancelar = new Button("Cancelar");
 	

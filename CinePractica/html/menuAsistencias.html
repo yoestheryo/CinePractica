@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Manual Usuario</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/Users/esthe/Desktop/Practicas pendientes/Práctica3 PR - Programa gestión/Ayuda/img/favicon.png">
+		<img class="portada" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\portada.jpg" 
+		width=1100 height=350>
+
+		<style>
+			body {margin-left: 50px; background-color: rgb(192, 205, 252);}
+			img.portada
+			{
+				float: center;
+				margin-top: 10px;
+				margin-bottom: 30px;
+        		margin-left: 20px;
+			}
+
+			img.general
+			{
+				float: center;
+				margin-top: 30px;
+				margin-bottom: 30px;
+        		margin-left: 100px;
+				margin-right: 50px;
+			}
+
+			h1{
+        		color:rgb(92, 107, 157);
+        		text-shadow: rgb(162, 175, 248) 0.2em 0.2em 0.2em;
+        		font-style: italic;
+        		font-size: 50px;
+        		text-align:center;
+        		letter-spacing:normal;
+        		text-transform:capitalize;
+        		font-weight: bold;
+        		font-family:Verdana, Geneva, Tahoma, sans-serif;
+        		margin-bottom: 5%;
+			  }
+
+			h2{
+        		color:rgb(245, 23, 123);
+				font-weight: bolder;
+        		font-size: 25px;
+        		font-family:Verdana, Geneva, Tahoma, sans-serif;
+        		text-justify: distribute;
+				margin-left: 40;
+    		  }
+
+			div{
+				font-family:'Times New Roman', Times, serif;
+				color:black;
+        		text-align: justify;
+        		font-size: 18px;
+        		width: 80%;
+				margin-bottom: 20;
+    		  }
+
+			footer{
+				font-size: 17px;
+				text-align: center;
+				color:blue;
+				width: 80%;
+				height: 15%;
+				margin-top: 50px;
+				margin-bottom: 20px;
+				border-top: 3px solid rgb(2, 147, 210);
+			  }
+		</style>
+	</head>
+
+	<body>
+		<header>
+		   <h1>Menú Asistencias</h1>
+		</header>
+
+		<article>
+            <h2>Nueva Asistencia</h2>
+		<div>
+            Ahora pasaremos a la ventana de Asistencias, que está relacionada con los datos de las visitas de los clientes a los cines, 
+            cada vez que asisten. En este menú, encontramos las mismas 4 opciones: Alta, Baja, Modificación y Consulta. Pero únicamente el 
+            usuario ‘administrador’ tiene acceso a esas 4 tareas:
+        </p>
+            <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\altaAsistencia.png"/>
+        </p>
+		</div>
+
+		<h2>Eliminar Asistencia</h2>
+		<div>
+            Ahora pasaremos a explicar la baja. Para realizar una baja debemos clicar en la opción de ‘Eliminar Asistencia’. Consiste en una primera ventana, 
+            con un desplegable con los datos de las asistencias, del cual, tendremos que elegir el que se necesita borrar. 
+            Cuando esté seleccionado, pulsamos en Borrar. Si se pulsa Borrar sin haber elegido ninguna asistencia, saltará un mensaje avisando de que se 
+            debe de elegir una opción:
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\elegirAsistencia.png"/> 
+        </p>
+        Si se ha seleccionado una opción, saltará el siguiente mensaje en el que se nos pide confirmar si deseamos borrar definitivamente esa asistencia, 
+        ya que es imposible de recuperar.
+        Después de pulsar ‘Sí’, aparecerá otra ventanita donde bien se confirme la baja o nos informe de que ha habido un error.
+        </div>	
+			
+		<h2>Modificar Asistencia</h2>
+		<div>
+            Para poder modificar una Asistencia, en el menú principal debemos clicar en la opción ‘Modificar Asistencia’ de la pestaña Asistencias. 
+            La primera ventana es una ventana con un menú desplegable donde se nos muestran los registros en el sistema de todas las asistencias.
+		</p>
+		<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\elegirClienteModificar.png"/>	
+        </p>
+			<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\modificarAsistencia.png"/>
+		</p>
+            Si no elegimos ninguna opción y directamente pulsamos ‘Modificar’, se indicará en un mensaje que se debe seleccionar una opción
+            En caso de haber elegido una asistencia, se procederá a la modificación de los datos en la siguiente ventana:
+            Como se puede ver, las dos elecciones de cada desplegable que salen directamente seleccionadas, son las que pertenecen a esa 
+            asistencia, para que sea más fácil su modificación. 
+            </p>
+            El primer campo que corresponde al ‘idAsistencia’, está bloqueado para que no se pueda modificar, ya que no es un alta, esta 
+            asistencia ya tiene su propia identificación y se debe mantener.
+            En etiqueta ‘Asigne una Persona a esta Asistencia’, que es esa persona a la que se le asignaron esos datos en su momento, y 
+            que puede ser la errónea, se presenta un menú desplegable con todos los datos de las personas para que se pueda elegir la correcta y 
+            modificarla. Del mismo modo, hay otro desplegable de los Cines, para que a esa Persona se le asigne el Cine correspondiente.
+            </p>
+            <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\modificacionAsistencia.png"/>
+            Si se pulsa en ‘Guardar Cambios’ y se modifica correctamente, saltará una ventana con este mensaje, y si no, se indicaría que 
+            hay un error. Si saliese el error, contacte con el servicio informático.
+            </p>
+        </div>
+
+		<h2>Listado Asistencias</h2>
+		<div>
+            La última de las opciones de esta pestaña, es la Consulta de los datos de las Asistencias.
+            Se mostrarán los números identificativos que corresponden a cada Persona y los números identificativos de los Cines a los que esas personas han asistido. 
+            Esta información, se presentará en un cuadro de texto que no será posible modificar:
+		</p>
+		<img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\oldConsultaAsistencias.png"/>
+        </p>
+        He de explicar, que el número de la última columna corresponde al número identificativo de una persona. Si se desean conocer los datos de esa persona, simplemente 
+        se debe clicar en la pestaña ‘Personas’, ‘Listado de Personas’ y buscar en la primera columna el número que coincide con la última columna de Clientes.
+        </p>
+        <img class="general" src="C:\Users\esthe\Desktop\Practicas pendientes\Práctica3 PR - Programa gestión\Ayuda\img\NewConsultaAsistencias.png"/>
+        <b>Como hemos mencionado anteriormente, esta es otra de las opciones que está directamente relacionada con otras dos opciones, con personas y cines. Para que sea más cómodo, 
+        a partir de ahora, en vez de mostrar los números identificativos en sus correspondientes listados, mostraremos los datos mínimos más 
+        relevantes.</b>
+        </p>
+        </div>
+		</article>
+
+		<footer>
+			<p>Si tiene alguna otra duda, siga consultando el resto de la guía.</p>
+		</footer>
+	</body>
+</html>
