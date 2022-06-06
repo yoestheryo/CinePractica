@@ -111,7 +111,7 @@ public class ConsultaPersonas implements WindowListener, ActionListener
 			}
 
 			bd.conectar();
-			document.add(new Paragraph(bd.consultarClientes(tipoUsuario)));
+			document.add(new Paragraph(bd.consultarPersonas(tipoUsuario)));
 			bd.desconectar();
 
 			document.close();

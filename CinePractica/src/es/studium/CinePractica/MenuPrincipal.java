@@ -13,8 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import com.itextpdf.io.exceptions.IOException;
-
 public class MenuPrincipal extends Frame implements WindowListener, ActionListener
 {
 	private static final long serialVersionUID = 1L;
